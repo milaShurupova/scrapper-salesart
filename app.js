@@ -14,10 +14,10 @@ async function scrapeData() {
         const $ = cheerio.load(data);
 
         const listItems = $(".mw-parser-output ul li");
-        console.log(listItems.html());
+        //console.log(listItems.html());
 
         listItems.each(function (idx, el) {
-            console.log($(el).text());
+            console.log($(el).children("a").text());
         });
 
         const names = [];
