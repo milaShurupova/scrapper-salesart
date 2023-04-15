@@ -1,73 +1,5 @@
 const cheerio = require("cheerio");
 const markup = `
-<!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-<html lang="en" class="artdeco android chrome mobile " data-renderer="glimmer">
-
-<head>
-
-    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>
-
-        Profile | LinkedIn
-
-    </title>
-    <meta name="asset-url" id="icons-svg" content="https://static.licdn.com/sc/h/a1ugpk2u3yc6q78qbskj0v628">
-
-    <meta name="treeID" content="AAX5N4Pg/s1O/J7hug4THQ==">
-
-    <meta name="pageKey" content="p_mwlite_profile_view">
-    <meta name="appName" content="lite-frontend">
-    <meta name="trackingId" content="NQ3Ays6qRw6EQncaVZrk7A==">
-    <meta name="scrollPos" content="0">
-    <meta name="gdpr_notice_JS" id="gdpr_notice_JS" content="https://static.licdn.com/sc/h/24k71zou1aqq6l45suhaymbcw">
-    <meta name="apple-itunes-app"
-        content="app-id=288429040, app-argument=https://www.linkedin.com/mwlite/in/liudmilashurupova/">
-    <meta name="account_center_JS" id="account_center_JS"
-        content="https://static.licdn.com/sc/h/1cizzppi6gct0ja9qvbil20ec">
-    <meta name="share_modal_loader_JS" id="share_modal_loader_JS"
-        content="https://static.licdn.com/sc/h/b5hvjymw4n7u0vn1u3p2j1k09">
-    <meta name="share_modal_loader_CSS" id="share_modal_loader_CSS"
-        content="https://static.licdn.com/sc/h/1dvos9calb3gubyk0r6xgcg8v">
-    <link href="https://static.licdn.com/sc/h/2bipwmvzj49mhd6h5lktj8sap" rel="shortcut icon" type="image/x-icon">
-
-    <!---->
-    <link rel="manifest" href="/mwlite/manifest.json" crossorigin="use-credentials">
-
-    <link rel="stylesheet" href="https://static.licdn.com/sc/h/balkjtwy5a2kt4i78nauupxb0">
-    <link rel="stylesheet" href="https://static.licdn.com/sc/h/ah58c74uzk8aw7hle18rte7o0">
-
-
-    <meta name="push_notif_js_path" content="https://static.licdn.com/sc/h/xls7pfzt1gxtzfm7ejqll32r">
-    <meta name="litms_module_loader" id="litms_module_loader"
-        content="https://static.licdn.com/sc/h/4is7s7mtb1ik49w3u3t0sryi0">
-    <meta name="featured_modal_loader_JS" id="featured_modal_loader_JS"
-        content="https://static.licdn.com/sc/h/byn277y530g88ifnf741dbewo">
-    <meta name="featured_modal_loader_CSS" id="featured_modal_loader_CSS"
-        content="https://static.licdn.com/sc/h/9aypkru6uc1eczd8ihknh923j">
-
-
-    <script>(function () { var docEl = document.documentElement; if (docEl.classList.contains('ios')) { var size = parseFloat(getComputedStyle(docEl).fontSize); if (!isNaN(size)) { var scaledSize = 0.625 * size; (docEl.style.fontSize = Math.max(scaledSize, 10) + 'px'); if (scaledSize > 15) { docEl.classList.add('ios-large-text') } } } })();</script>
-
-    <!---->
-</head>
-
-<body class="lite-default system-fonts mercado-header mercado-illustration mercado-ghost mercado-color-palette mercado-button mercado-icons mercado-form-element
-         body-nav-v2
-        
-        ">
-
     <!---->
     <!---->
     <code id="darkModeLixValue" style="display: none"><!--"enabled-light"--></code>
@@ -5320,11 +5252,8 @@ const markup = `
 
     <div aria-live="polite" class="visually-hidden" id="a11y-alert-container"></div>
     <!---->
-</body >
-
-</html >
 `
 
 const $ = cheerio.load(markup);
-const name = $(".app-container section dl dt span");
+const name = $(".basic-profile-container basic-profile-update dl dt span");
 console.log(name.text());
