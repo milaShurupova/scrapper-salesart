@@ -5255,5 +5255,5 @@ const markup = `
 `
 
 const $ = cheerio.load(markup);
-const name = $(".basic-profile-container basic-profile-update dl dt span");
+const name = $(".span.");
 console.log(name.text());
