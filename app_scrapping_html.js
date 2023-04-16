@@ -5255,5 +5255,5 @@ const markup = `
 `
 
 const $ = cheerio.load(markup);
-const name = $(".span.");
-console.log(name.text());
+const name = $("span.member-current-company");
+console.log(name.text().trim());

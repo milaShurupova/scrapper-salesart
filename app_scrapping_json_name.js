@@ -2,13 +2,12 @@ const fetch = require("node-fetch");
 
 const profile = {
     profileId: "",
+    name: "",
     firstName: "",
     lastName: "",
     title: "",
     university: ""
 }
-
-console.log("Hello");
 
 const handle = `brodetskiyveniamin`;
 const handle2 = `artem-rudman`;
@@ -50,6 +49,15 @@ async function getProfileData(handle) {
         profile.profileId = jsonData.data["*elements"][0].split(":").pop();
         console.log(profile.profileId);
 
+        jsonData.included.forEach(element => {
+            if ((element.firstName) && (element.entityUrn) && (element.entityUrn == `urn:li:fsd_profile:${profile.profileId}`)) {
+                profile.firstName = element.firstName;
+                profile.lastName = element.lastName;
+                console.log(profile.firstName);
+                console.log(profile.lastName);
+            }
+        });
+        
         getProfileDataUniversity(profile.profileId);
 
     })
@@ -58,9 +66,6 @@ async function getProfileData(handle) {
     });
 }
 
-
-//getProfileData(handle);
-getProfileData(handle2);
 
 async function getProfileDataUniversity(profileId) {
     fetch(`https://www.linkedin.com/voyager/api/graphql?includeWebMetadata=true&variables=(profileUrn:urn%3Ali%3Afsd_profile%3A${profileId})&&queryId=voyagerIdentityDashProfileCards.98e84b0e71b60ea3d353bf809ff4d23e`, {
@@ -86,17 +91,17 @@ async function getProfileDataUniversity(profileId) {
         "body": null,
         "method": "GET"
     })
-    .then(response => response.json())
-    .then(jsonData => {
+        .then(response => response.json())
+        .then(jsonData => {
 
-        profile.university = jsonData.included[5].topComponents[1].components.fixedListComponent.components[0].components.entityComponent.title.text;
-        console.log(profile.university);
+            profile.university = jsonData.included[5].topComponents[1].components.fixedListComponent.components[0].components.entityComponent.title.text;
+            console.log(profile.university);
 
-    })
-    .catch(error => {
-        console.error(error);
-    });
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
-
-
+//getProfileData(handle);
+getProfileData(handle2);
