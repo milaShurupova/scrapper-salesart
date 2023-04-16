@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 
 const profile = {
     profileId: "",
-    name: "",
+    companyName: "",
     firstName: "",
     lastName: "",
     title: "",
@@ -66,7 +66,6 @@ async function getProfileData(handle) {
     });
 }
 
-
 async function getProfileDataUniversity(profileId) {
     fetch(`https://www.linkedin.com/voyager/api/graphql?includeWebMetadata=true&variables=(profileUrn:urn%3Ali%3Afsd_profile%3A${profileId})&&queryId=voyagerIdentityDashProfileCards.98e84b0e71b60ea3d353bf809ff4d23e`, {
         "headers": {
@@ -97,11 +96,17 @@ async function getProfileDataUniversity(profileId) {
             profile.university = jsonData.included[5].topComponents[1].components.fixedListComponent.components[0].components.entityComponent.title.text;
             console.log(profile.university);
 
+            // jsonData.included.forEach(element => {
+            //     if (element.topComponents[1].components.fixedListComponent.components[0].components.entityComponent.subtitle.text) {
+            //         profile.companyName = element.topComponents[1].components.fixedListComponent.components[0].components.entityComponent.subtitle.text
+            //         console.log(profile.companyName);
+            //     }
+            // })
         })
         .catch(error => {
             console.error(error);
         });
 }
 
-//getProfileData(handle);
-getProfileData(handle2);
+getProfileData(handle);
+//getProfileData(handle2);
